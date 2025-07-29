@@ -268,140 +268,255 @@ function createOfficeImage(width, height) {
     canvas.width = width;
     canvas.height = height;
     
-    // Create gradient background (office lighting)
+    // Create clean modern background
     const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, '#f8f9fa');
-    gradient.addColorStop(0.3, '#e9ecef');
-    gradient.addColorStop(0.7, '#dee2e6');
-    gradient.addColorStop(1, '#ced4da');
+    gradient.addColorStop(0, '#ffffff');
+    gradient.addColorStop(0.4, '#f8f9fb');
+    gradient.addColorStop(0.8, '#f0f2f5');
+    gradient.addColorStop(1, '#e8ecf0');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
     
-    // Add office elements (desks, windows, plants)
-    drawOfficeElements(ctx, width, height);
+    // Add modern office elements
+    drawModernOfficeElements(ctx, width, height);
     
     // Add subtle overlay for text readability
-    ctx.fillStyle = 'rgba(44, 62, 80, 0.3)';
+    ctx.fillStyle = 'rgba(44, 62, 80, 0.4)';
     ctx.fillRect(0, 0, width, height);
     
     return canvas.toDataURL();
 }
 
-// Draw office elements
-function drawOfficeElements(ctx, width, height) {
-    // Draw windows (background)
-    drawWindows(ctx, width, height);
+// Draw modern office elements
+function drawModernOfficeElements(ctx, width, height) {
+    // Draw large windows with city view
+    drawModernWindows(ctx, width, height);
     
-    // Draw desks and workstations
-    drawDesks(ctx, width, height);
+    // Draw sleek workstations
+    drawModernWorkstations(ctx, width, height);
     
-    // Draw plants and decorative elements
-    drawPlants(ctx, width, height);
+    // Draw modern furniture and decor
+    drawModernFurniture(ctx, width, height);
     
-    // Draw subtle geometric patterns
-    drawGeometricPattern(ctx, width, height);
+    // Draw architectural elements
+    drawArchitecturalElements(ctx, width, height);
 }
 
-// Draw windows
-function drawWindows(ctx, width, height) {
-    const windowWidth = width * 0.15;
-    const windowHeight = height * 0.6;
-    const windowY = height * 0.2;
+// Draw modern windows
+function drawModernWindows(ctx, width, height) {
+    // Large floor-to-ceiling windows
+    const windowWidth = width * 0.25;
+    const windowHeight = height * 0.8;
+    const windowY = height * 0.1;
     
-    // Left windows
-    for (let i = 0; i < 3; i++) {
-        const x = width * 0.05 + i * (windowWidth + 20);
+    // Background windows spanning most of the left side
+    for (let i = 0; i < 2; i++) {
+        const x = width * 0.02 + i * (windowWidth + 10);
         
-        // Window frame
-        ctx.fillStyle = '#34495e';
+        // Minimal window frame
+        ctx.fillStyle = '#e8ecf0';
         ctx.fillRect(x, windowY, windowWidth, windowHeight);
         
-        // Window glass with gradient
-        const windowGradient = ctx.createLinearGradient(x, windowY, x + windowWidth, windowY + windowHeight);
-        windowGradient.addColorStop(0, 'rgba(135, 206, 235, 0.3)');
-        windowGradient.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
-        ctx.fillStyle = windowGradient;
-        ctx.fillRect(x + 5, windowY + 5, windowWidth - 10, windowHeight - 10);
+        // City view gradient through window
+        const cityGradient = ctx.createLinearGradient(x, windowY, x + windowWidth, windowY + windowHeight);
+        cityGradient.addColorStop(0, 'rgba(173, 216, 230, 0.2)');
+        cityGradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.3)');
+        cityGradient.addColorStop(0.7, 'rgba(220, 220, 220, 0.2)');
+        cityGradient.addColorStop(1, 'rgba(190, 190, 190, 0.1)');
+        ctx.fillStyle = cityGradient;
+        ctx.fillRect(x + 2, windowY + 2, windowWidth - 4, windowHeight - 4);
+        
+        // Subtle building silhouettes
+        ctx.fillStyle = 'rgba(180, 180, 180, 0.15)';
+        for (let j = 0; j < 5; j++) {
+            const buildingX = x + (windowWidth / 5) * j;
+            const buildingHeight = Math.random() * windowHeight * 0.4 + windowHeight * 0.2;
+            ctx.fillRect(buildingX, windowY + windowHeight - buildingHeight, windowWidth / 6, buildingHeight);
+        }
     }
 }
 
-// Draw desks and workstations
-function drawDesks(ctx, width, height) {
-    const deskCount = 4;
-    const deskWidth = width * 0.12;
-    const deskHeight = height * 0.08;
-    const deskY = height * 0.7;
+// Draw modern workstations
+function drawModernWorkstations(ctx, width, height) {
+    const workstationCount = 3;
+    const workstationWidth = width * 0.15;
+    const workstationHeight = height * 0.06;
+    const workstationY = height * 0.65;
     
-    for (let i = 0; i < deskCount; i++) {
-        const x = width * 0.3 + i * (deskWidth + 30);
+    for (let i = 0; i < workstationCount; i++) {
+        const x = width * 0.55 + i * (workstationWidth + 40);
         
-        // Desk surface
-        ctx.fillStyle = '#8b4513';
-        ctx.fillRect(x, deskY, deskWidth, deskHeight);
+        // Modern white desk surface
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x, workstationY, workstationWidth, workstationHeight);
         
-        // Desk legs
-        ctx.fillStyle = '#654321';
-        ctx.fillRect(x + 5, deskY + deskHeight, 8, height * 0.15);
-        ctx.fillRect(x + deskWidth - 13, deskY + deskHeight, 8, height * 0.15);
+        // Subtle desk shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(x + 2, workstationY + 2, workstationWidth, workstationHeight);
         
-        // Computer/laptop on desk
+        // Minimalist desk legs (barely visible)
+        ctx.fillStyle = '#f5f5f5';
+        ctx.fillRect(x + 10, workstationY + workstationHeight, 4, height * 0.2);
+        ctx.fillRect(x + workstationWidth - 14, workstationY + workstationHeight, 4, height * 0.2);
+        
+        // Modern monitors/laptops
         if (i % 2 === 0) {
+            // Thin monitor
             ctx.fillStyle = '#2c3e50';
-            ctx.fillRect(x + deskWidth * 0.2, deskY - 15, deskWidth * 0.6, 12);
+            ctx.fillRect(x + workstationWidth * 0.25, workstationY - 25, workstationWidth * 0.5, 20);
+            ctx.fillStyle = '#34495e';
+            ctx.fillRect(x + workstationWidth * 0.3, workstationY - 20, workstationWidth * 0.4, 15);
+        } else {
+            // Laptop
+            ctx.fillStyle = '#95a5a6';
+            ctx.fillRect(x + workstationWidth * 0.2, workstationY - 8, workstationWidth * 0.6, 6);
         }
         
-        // Chair
-        ctx.fillStyle = '#34495e';
-        ctx.beginPath();
-        ctx.arc(x + deskWidth / 2, deskY + deskHeight + 40, 20, 0, Math.PI * 2);
-        ctx.fill();
+        // Modern ergonomic chair
+        ctx.fillStyle = '#ecf0f1';
+        drawModernChair(ctx, x + workstationWidth / 2, workstationY + workstationHeight + 30);
     }
 }
 
-// Draw plants and decorative elements
-function drawPlants(ctx, width, height) {
-    // Floor plants
-    const plantPositions = [
-        { x: width * 0.1, y: height * 0.8 },
-        { x: width * 0.85, y: height * 0.75 }
+// Draw modern chair
+function drawModernChair(ctx, centerX, centerY) {
+    // Chair seat
+    ctx.fillStyle = '#ecf0f1';
+    ctx.beginPath();
+    ctx.ellipse(centerX, centerY, 25, 18, 0, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Chair back
+    ctx.fillStyle = '#d5dbdb';
+    ctx.fillRect(centerX - 20, centerY - 35, 40, 25);
+    
+    // Chair base
+    ctx.fillStyle = '#bdc3c7';
+    ctx.beginPath();
+    ctx.arc(centerX, centerY + 25, 3, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+// Draw modern furniture
+function drawModernFurniture(ctx, width, height) {
+    // Modern planters with minimalist plants
+    drawModernPlanters(ctx, width, height);
+    
+    // Conference table in background
+    drawConferenceTable(ctx, width, height);
+    
+    // Modern lighting fixtures
+    drawModernLighting(ctx, width, height);
+}
+
+// Draw modern planters
+function drawModernPlanters(ctx, width, height) {
+    const planterPositions = [
+        { x: width * 0.92, y: height * 0.7 },
+        { x: width * 0.05, y: height * 0.85 }
     ];
     
-    plantPositions.forEach(pos => {
-        // Pot
-        ctx.fillStyle = '#8b4513';
-        ctx.fillRect(pos.x, pos.y, 30, 40);
+    planterPositions.forEach(pos => {
+        // Modern white rectangular planter
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(pos.x, pos.y, 35, 45);
         
-        // Plant leaves
-        ctx.fillStyle = '#228b22';
-        for (let i = 0; i < 5; i++) {
-            const leafX = pos.x + 15 + Math.cos(i * Math.PI / 2.5) * 20;
-            const leafY = pos.y - 10 + Math.sin(i * Math.PI / 2.5) * 15;
+        // Planter shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(pos.x + 2, pos.y + 2, 35, 45);
+        
+        // Minimalist plant (simple geometric shapes)
+        ctx.fillStyle = '#27ae60';
+        // Stem
+        ctx.fillRect(pos.x + 15, pos.y - 20, 3, 25);
+        
+        // Modern leaves (geometric)
+        for (let i = 0; i < 3; i++) {
+            const leafY = pos.y - 15 + i * 8;
             ctx.beginPath();
-            ctx.ellipse(leafX, leafY, 8, 15, i * Math.PI / 5, 0, Math.PI * 2);
+            ctx.ellipse(pos.x + 17 + i * 5, leafY, 8, 4, i * Math.PI / 6, 0, Math.PI * 2);
             ctx.fill();
         }
     });
 }
 
-// Draw geometric pattern overlay
-function drawGeometricPattern(ctx, width, height) {
-    ctx.globalAlpha = 0.05;
-    ctx.strokeStyle = '#3498db';
-    ctx.lineWidth = 2;
+// Draw conference table
+function drawConferenceTable(ctx, width, height) {
+    const tableX = width * 0.3;
+    const tableY = height * 0.4;
+    const tableWidth = width * 0.2;
+    const tableHeight = height * 0.12;
     
-    // Draw subtle grid pattern
-    const gridSize = 50;
-    for (let x = 0; x < width; x += gridSize) {
+    // Table surface
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(tableX, tableY, tableWidth, tableHeight);
+    
+    // Table shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+    ctx.fillRect(tableX + 3, tableY + 3, tableWidth, tableHeight);
+    
+    // Table legs (minimalist)
+    ctx.fillStyle = '#ecf0f1';
+    ctx.fillRect(tableX + 20, tableY + tableHeight, 6, height * 0.15);
+    ctx.fillRect(tableX + tableWidth - 26, tableY + tableHeight, 6, height * 0.15);
+}
+
+// Draw modern lighting
+function drawModernLighting(ctx, width, height) {
+    // Pendant lighting
+    const lightPositions = [
+        { x: width * 0.4, y: height * 0.05 },
+        { x: width * 0.7, y: height * 0.08 }
+    ];
+    
+    lightPositions.forEach(pos => {
+        // Light fixture (minimalist)
+        ctx.fillStyle = '#f8f9fa';
         ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-    }
+        ctx.ellipse(pos.x, pos.y, 15, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Light glow effect
+        const glowGradient = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, 40);
+        glowGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+        glowGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 40, 0, Math.PI * 2);
+        ctx.fill();
+    });
+}
+
+// Draw architectural elements
+function drawArchitecturalElements(ctx, width, height) {
+    // Modern ceiling details
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.fillRect(0, 0, width, height * 0.15);
     
-    for (let y = 0; y < height; y += gridSize) {
+    // Subtle floor texture
+    ctx.fillStyle = 'rgba(245, 245, 245, 0.5)';
+    ctx.fillRect(0, height * 0.8, width, height * 0.2);
+    
+    // Modern architectural lines
+    ctx.strokeStyle = 'rgba(220, 220, 220, 0.3)';
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.5;
+    
+    // Horizontal lines
+    for (let i = 1; i < 4; i++) {
+        const y = (height / 4) * i;
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(width, y);
+        ctx.stroke();
+    }
+    
+    // Vertical lines
+    for (let i = 1; i < 6; i++) {
+        const x = (width / 6) * i;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
         ctx.stroke();
     }
     
