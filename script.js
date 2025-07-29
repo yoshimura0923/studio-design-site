@@ -268,176 +268,282 @@ function createOfficeImage(width, height) {
     canvas.width = width;
     canvas.height = height;
     
-    // Create clean modern background
+    // Create warm, collaborative office background
     const gradient = ctx.createLinearGradient(0, 0, width, height);
-    gradient.addColorStop(0, '#ffffff');
-    gradient.addColorStop(0.4, '#f8f9fb');
-    gradient.addColorStop(0.8, '#f0f2f5');
-    gradient.addColorStop(1, '#e8ecf0');
+    gradient.addColorStop(0, '#f7f8fa');
+    gradient.addColorStop(0.3, '#f0f1f3');
+    gradient.addColorStop(0.7, '#e8eaed');
+    gradient.addColorStop(1, '#dde0e4');
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
     
-    // Add modern office elements
-    drawModernOfficeElements(ctx, width, height);
+    // Add collaborative office elements
+    drawCollaborativeOfficeElements(ctx, width, height);
     
     // Add subtle overlay for text readability
-    ctx.fillStyle = 'rgba(44, 62, 80, 0.4)';
+    ctx.fillStyle = 'rgba(44, 62, 80, 0.35)';
     ctx.fillRect(0, 0, width, height);
     
     return canvas.toDataURL();
 }
 
-// Draw modern office elements
-function drawModernOfficeElements(ctx, width, height) {
-    // Draw large windows with city view
-    drawModernWindows(ctx, width, height);
+// Draw collaborative office elements
+function drawCollaborativeOfficeElements(ctx, width, height) {
+    // Draw shared workspace table
+    drawSharedWorkspace(ctx, width, height);
     
-    // Draw sleek workstations
-    drawModernWorkstations(ctx, width, height);
+    // Draw team members working on laptops
+    drawTeamMembers(ctx, width, height);
     
-    // Draw modern furniture and decor
-    drawModernFurniture(ctx, width, height);
+    // Draw office environment
+    drawOfficeEnvironment(ctx, width, height);
     
-    // Draw architectural elements
-    drawArchitecturalElements(ctx, width, height);
+    // Draw collaborative tools and atmosphere
+    drawCollaborativeAtmosphere(ctx, width, height);
 }
 
-// Draw modern windows
-function drawModernWindows(ctx, width, height) {
-    // Large floor-to-ceiling windows
-    const windowWidth = width * 0.25;
-    const windowHeight = height * 0.8;
-    const windowY = height * 0.1;
+// Draw shared workspace
+function drawSharedWorkspace(ctx, width, height) {
+    // Large collaborative table
+    const tableX = width * 0.15;
+    const tableY = height * 0.5;
+    const tableWidth = width * 0.7;
+    const tableHeight = height * 0.25;
     
-    // Background windows spanning most of the left side
-    for (let i = 0; i < 2; i++) {
-        const x = width * 0.02 + i * (windowWidth + 10);
-        
-        // Minimal window frame
-        ctx.fillStyle = '#e8ecf0';
-        ctx.fillRect(x, windowY, windowWidth, windowHeight);
-        
-        // City view gradient through window
-        const cityGradient = ctx.createLinearGradient(x, windowY, x + windowWidth, windowY + windowHeight);
-        cityGradient.addColorStop(0, 'rgba(173, 216, 230, 0.2)');
-        cityGradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.3)');
-        cityGradient.addColorStop(0.7, 'rgba(220, 220, 220, 0.2)');
-        cityGradient.addColorStop(1, 'rgba(190, 190, 190, 0.1)');
-        ctx.fillStyle = cityGradient;
-        ctx.fillRect(x + 2, windowY + 2, windowWidth - 4, windowHeight - 4);
-        
-        // Subtle building silhouettes
-        ctx.fillStyle = 'rgba(180, 180, 180, 0.15)';
-        for (let j = 0; j < 5; j++) {
-            const buildingX = x + (windowWidth / 5) * j;
-            const buildingHeight = Math.random() * windowHeight * 0.4 + windowHeight * 0.2;
-            ctx.fillRect(buildingX, windowY + windowHeight - buildingHeight, windowWidth / 6, buildingHeight);
-        }
+    // Table surface with wood texture
+    ctx.fillStyle = '#f5f1eb';
+    ctx.fillRect(tableX, tableY, tableWidth, tableHeight);
+    
+    // Table shadow
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillRect(tableX + 3, tableY + 3, tableWidth, tableHeight);
+    
+    // Wood grain effect
+    ctx.strokeStyle = 'rgba(210, 180, 140, 0.3)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 10; i++) {
+        const y = tableY + (tableHeight / 10) * i;
+        ctx.beginPath();
+        ctx.moveTo(tableX, y);
+        ctx.lineTo(tableX + tableWidth, y);
+        ctx.stroke();
     }
-}
-
-// Draw modern workstations
-function drawModernWorkstations(ctx, width, height) {
-    const workstationCount = 3;
-    const workstationWidth = width * 0.15;
-    const workstationHeight = height * 0.06;
-    const workstationY = height * 0.65;
     
-    for (let i = 0; i < workstationCount; i++) {
-        const x = width * 0.55 + i * (workstationWidth + 40);
-        
-        // Modern white desk surface
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x, workstationY, workstationWidth, workstationHeight);
-        
-        // Subtle desk shadow
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(x + 2, workstationY + 2, workstationWidth, workstationHeight);
-        
-        // Minimalist desk legs (barely visible)
-        ctx.fillStyle = '#f5f5f5';
-        ctx.fillRect(x + 10, workstationY + workstationHeight, 4, height * 0.2);
-        ctx.fillRect(x + workstationWidth - 14, workstationY + workstationHeight, 4, height * 0.2);
-        
-        // Modern monitors/laptops
-        if (i % 2 === 0) {
-            // Thin monitor
-            ctx.fillStyle = '#2c3e50';
-            ctx.fillRect(x + workstationWidth * 0.25, workstationY - 25, workstationWidth * 0.5, 20);
-            ctx.fillStyle = '#34495e';
-            ctx.fillRect(x + workstationWidth * 0.3, workstationY - 20, workstationWidth * 0.4, 15);
-        } else {
-            // Laptop
-            ctx.fillStyle = '#95a5a6';
-            ctx.fillRect(x + workstationWidth * 0.2, workstationY - 8, workstationWidth * 0.6, 6);
-        }
-        
-        // Modern ergonomic chair
-        ctx.fillStyle = '#ecf0f1';
-        drawModernChair(ctx, x + workstationWidth / 2, workstationY + workstationHeight + 30);
-    }
+    // Table legs
+    ctx.fillStyle = '#d4c4a8';
+    const legWidth = 15;
+    ctx.fillRect(tableX + 30, tableY + tableHeight, legWidth, height * 0.15);
+    ctx.fillRect(tableX + tableWidth - 45, tableY + tableHeight, legWidth, height * 0.15);
 }
 
-// Draw modern chair
-function drawModernChair(ctx, centerX, centerY) {
-    // Chair seat
-    ctx.fillStyle = '#ecf0f1';
+// Draw team members
+function drawTeamMembers(ctx, width, height) {
+    const tableX = width * 0.15;
+    const tableY = height * 0.5;
+    const tableWidth = width * 0.7;
+    
+    // Team member positions around the table
+    const memberPositions = [
+        { x: tableX + tableWidth * 0.2, y: tableY + 30, angle: 0 },
+        { x: tableX + tableWidth * 0.5, y: tableY + 30, angle: 0 },
+        { x: tableX + tableWidth * 0.8, y: tableY + 30, angle: 0 },
+        { x: tableX + tableWidth * 0.35, y: tableY + 30, angle: 0 }
+    ];
+    
+    memberPositions.forEach((pos, index) => {
+        // Draw person silhouette (simplified)
+        drawPersonSilhouette(ctx, pos.x, pos.y - 80, index);
+        
+        // Draw laptop in front of each person
+        drawLaptop(ctx, pos.x - 25, pos.y - 20, index);
+        
+        // Draw chair
+        drawCollaborativeChair(ctx, pos.x, pos.y + 20);
+    });
+}
+
+// Draw person silhouette
+function drawPersonSilhouette(ctx, x, y, personIndex) {
+    const colors = ['#8e9aaf', '#a8b5c8', '#9ca8ba', '#b2bcc9'];
+    
+    // Head
+    ctx.fillStyle = colors[personIndex % colors.length];
     ctx.beginPath();
-    ctx.ellipse(centerX, centerY, 25, 18, 0, 0, Math.PI * 2);
+    ctx.arc(x, y, 20, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // Shoulders/torso
+    ctx.fillStyle = colors[personIndex % colors.length];
+    ctx.fillRect(x - 25, y + 15, 50, 60);
+    
+    // Arms (simplified)
+    ctx.fillRect(x - 35, y + 25, 15, 40);
+    ctx.fillRect(x + 20, y + 25, 15, 40);
+}
+
+// Draw laptop
+function drawLaptop(ctx, x, y, laptopIndex) {
+    const laptopColors = ['#2c3e50', '#34495e', '#525761', '#6c737f'];
+    
+    // Laptop base
+    ctx.fillStyle = '#ecf0f1';
+    ctx.fillRect(x, y, 50, 35);
+    
+    // Laptop screen
+    ctx.fillStyle = laptopColors[laptopIndex % laptopColors.length];
+    ctx.fillRect(x + 2, y - 25, 46, 30);
+    
+    // Screen content (glow)
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    ctx.fillRect(x + 4, y - 23, 42, 26);
+    
+    // Keyboard detail
+    ctx.fillStyle = '#95a5a6';
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 8; j++) {
+            ctx.fillRect(x + 5 + j * 5, y + 5 + i * 8, 4, 6);
+        }
+    }
+}
+
+// Draw collaborative chair
+function drawCollaborativeChair(ctx, centerX, centerY) {
+    // Chair seat
+    ctx.fillStyle = '#d6dae0';
+    ctx.beginPath();
+    ctx.ellipse(centerX, centerY, 22, 16, 0, 0, Math.PI * 2);
     ctx.fill();
     
     // Chair back
-    ctx.fillStyle = '#d5dbdb';
-    ctx.fillRect(centerX - 20, centerY - 35, 40, 25);
+    ctx.fillStyle = '#c2c8d0';
+    ctx.fillRect(centerX - 18, centerY - 30, 36, 22);
     
-    // Chair base
-    ctx.fillStyle = '#bdc3c7';
+    // Chair legs (simplified)
+    ctx.fillStyle = '#a8b0ba';
+    ctx.fillRect(centerX - 2, centerY + 16, 4, 20);
+}
+
+// Draw office environment
+function drawOfficeEnvironment(ctx, width, height) {
+    // Office windows with natural light
+    drawOfficeWindows(ctx, width, height);
+    
+    // Background office elements
+    drawBackgroundOffice(ctx, width, height);
+    
+    // Office plants and decor
+    drawOfficeDecor(ctx, width, height);
+}
+
+// Draw office windows
+function drawOfficeWindows(ctx, width, height) {
+    // Large window on the left
+    const windowX = width * 0.02;
+    const windowY = height * 0.1;
+    const windowWidth = width * 0.12;
+    const windowHeight = height * 0.6;
+    
+    // Window frame
+    ctx.fillStyle = '#e8eaed';
+    ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
+    
+    // Natural light through window
+    const lightGradient = ctx.createLinearGradient(windowX, windowY, windowX + windowWidth, windowY + windowHeight);
+    lightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+    lightGradient.addColorStop(0.5, 'rgba(245, 248, 250, 0.3)');
+    lightGradient.addColorStop(1, 'rgba(230, 235, 240, 0.2)');
+    ctx.fillStyle = lightGradient;
+    ctx.fillRect(windowX + 2, windowY + 2, windowWidth - 4, windowHeight - 4);
+}
+
+// Draw background office
+function drawBackgroundOffice(ctx, width, height) {
+    // Bookshelves or storage in background
+    ctx.fillStyle = '#dde0e4';
+    ctx.fillRect(width * 0.88, height * 0.2, width * 0.1, height * 0.5);
+    
+    // Books/files on shelves
+    ctx.fillStyle = '#b8bcc2';
+    for (let i = 0; i < 4; i++) {
+        const shelfY = height * 0.25 + i * height * 0.1;
+        ctx.fillRect(width * 0.89, shelfY, width * 0.08, height * 0.05);
+    }
+}
+
+// Draw office decor
+function drawOfficeDecor(ctx, width, height) {
+    // Small plant on table
+    const plantX = width * 0.8;
+    const plantY = height * 0.48;
+    
+    // Pot
+    ctx.fillStyle = '#c8d0d8';
+    ctx.fillRect(plantX, plantY, 20, 25);
+    
+    // Plant
+    ctx.fillStyle = '#4a7c59';
+    for (let i = 0; i < 4; i++) {
+        const leafX = plantX + 10 + Math.cos(i * Math.PI / 2) * 8;
+        const leafY = plantY - 5 + Math.sin(i * Math.PI / 2) * 6;
+        ctx.beginPath();
+        ctx.ellipse(leafX, leafY, 6, 10, i * Math.PI / 4, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Draw collaborative atmosphere
+function drawCollaborativeAtmosphere(ctx, width, height) {
+    // Collaboration indicators (documents, notes, etc.)
+    drawCollaborativeItems(ctx, width, height);
+    
+    // Ambient office lighting
+    drawAmbientLighting(ctx, width, height);
+}
+
+// Draw collaborative items
+function drawCollaborativeItems(ctx, width, height) {
+    const tableX = width * 0.15;
+    const tableY = height * 0.5;
+    const tableWidth = width * 0.7;
+    
+    // Papers/documents on table
+    const docPositions = [
+        { x: tableX + tableWidth * 0.1, y: tableY + 10 },
+        { x: tableX + tableWidth * 0.6, y: tableY + 15 },
+        { x: tableX + tableWidth * 0.85, y: tableY + 8 }
+    ];
+    
+    docPositions.forEach(pos => {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(pos.x, pos.y, 25, 35);
+        
+        // Text lines on documents
+        ctx.fillStyle = '#bdc3c7';
+        for (let i = 0; i < 4; i++) {
+            ctx.fillRect(pos.x + 3, pos.y + 5 + i * 6, 19, 2);
+        }
+    });
+    
+    // Coffee cups
+    ctx.fillStyle = '#8d6e63';
     ctx.beginPath();
-    ctx.arc(centerX, centerY + 25, 3, 0, Math.PI * 2);
+    ctx.arc(tableX + tableWidth * 0.25, tableY + 20, 8, 0, Math.PI * 2);
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(tableX + tableWidth * 0.75, tableY + 18, 8, 0, Math.PI * 2);
     ctx.fill();
 }
 
-// Draw modern furniture
-function drawModernFurniture(ctx, width, height) {
-    // Modern planters with minimalist plants
-    drawModernPlanters(ctx, width, height);
+// Draw ambient lighting
+function drawAmbientLighting(ctx, width, height) {
+    // Soft overhead lighting effect
+    const lightGradient = ctx.createRadialGradient(width / 2, height * 0.2, 0, width / 2, height * 0.2, width * 0.6);
+    lightGradient.addColorStop(0, 'rgba(255, 255, 255, 0.1)');
+    lightGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
     
-    // Conference table in background
-    drawConferenceTable(ctx, width, height);
-    
-    // Modern lighting fixtures
-    drawModernLighting(ctx, width, height);
-}
-
-// Draw modern planters
-function drawModernPlanters(ctx, width, height) {
-    const planterPositions = [
-        { x: width * 0.92, y: height * 0.7 },
-        { x: width * 0.05, y: height * 0.85 }
-    ];
-    
-    planterPositions.forEach(pos => {
-        // Modern white rectangular planter
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(pos.x, pos.y, 35, 45);
-        
-        // Planter shadow
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(pos.x + 2, pos.y + 2, 35, 45);
-        
-        // Minimalist plant (simple geometric shapes)
-        ctx.fillStyle = '#27ae60';
-        // Stem
-        ctx.fillRect(pos.x + 15, pos.y - 20, 3, 25);
-        
-        // Modern leaves (geometric)
-        for (let i = 0; i < 3; i++) {
-            const leafY = pos.y - 15 + i * 8;
-            ctx.beginPath();
-            ctx.ellipse(pos.x + 17 + i * 5, leafY, 8, 4, i * Math.PI / 6, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    });
+    ctx.fillStyle = lightGradient;
+    ctx.fillRect(0, 0, width, height * 0.8);
 }
 
 // Draw conference table
