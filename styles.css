@@ -160,7 +160,7 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 }
 
 .hero::before {
@@ -294,8 +294,8 @@ section h2 {
 /* About Section */
 .about {
     background-color: var(--bg-light);
-    margin-top: -20vh;
-    padding-top: calc(5rem + 20vh);
+    margin-top: -10vh;
+    padding-top: calc(5rem + 10vh);
 }
 
 .about-grid {
@@ -554,7 +554,7 @@ section h2 {
 
 @media (max-width: 768px) {
     .hero {
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
     }
     
     .hero-content {
@@ -562,8 +562,8 @@ section h2 {
     }
     
     .about {
-        margin-top: -10vh;
-        padding-top: calc(3rem + 10vh);
+        margin-top: -5vh;
+        padding-top: calc(3rem + 5vh);
     }
     
     .hamburger {
