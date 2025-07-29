@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLoadingSpinner();
     initContactForm();
     initPortfolioImages();
+    initHeroBackground();
 });
 
 // Navigation functionality
@@ -245,6 +246,166 @@ function initPortfolioImages() {
             }, 100);
         });
     });
+}
+
+// Hero background initialization
+function initHeroBackground() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        const heroImage = createOfficeImage(1920, 1080);
+        hero.style.backgroundImage = `url(${heroImage})`;
+        hero.style.backgroundSize = 'cover';
+        hero.style.backgroundPosition = 'center';
+        hero.style.backgroundRepeat = 'no-repeat';
+    }
+}
+
+// Create office background image
+function createOfficeImage(width, height) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = width;
+    canvas.height = height;
+    
+    // Create gradient background (office lighting)
+    const gradient = ctx.createLinearGradient(0, 0, width, height);
+    gradient.addColorStop(0, '#f8f9fa');
+    gradient.addColorStop(0.3, '#e9ecef');
+    gradient.addColorStop(0.7, '#dee2e6');
+    gradient.addColorStop(1, '#ced4da');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    
+    // Add office elements (desks, windows, plants)
+    drawOfficeElements(ctx, width, height);
+    
+    // Add subtle overlay for text readability
+    ctx.fillStyle = 'rgba(44, 62, 80, 0.3)';
+    ctx.fillRect(0, 0, width, height);
+    
+    return canvas.toDataURL();
+}
+
+// Draw office elements
+function drawOfficeElements(ctx, width, height) {
+    // Draw windows (background)
+    drawWindows(ctx, width, height);
+    
+    // Draw desks and workstations
+    drawDesks(ctx, width, height);
+    
+    // Draw plants and decorative elements
+    drawPlants(ctx, width, height);
+    
+    // Draw subtle geometric patterns
+    drawGeometricPattern(ctx, width, height);
+}
+
+// Draw windows
+function drawWindows(ctx, width, height) {
+    const windowWidth = width * 0.15;
+    const windowHeight = height * 0.6;
+    const windowY = height * 0.2;
+    
+    // Left windows
+    for (let i = 0; i < 3; i++) {
+        const x = width * 0.05 + i * (windowWidth + 20);
+        
+        // Window frame
+        ctx.fillStyle = '#34495e';
+        ctx.fillRect(x, windowY, windowWidth, windowHeight);
+        
+        // Window glass with gradient
+        const windowGradient = ctx.createLinearGradient(x, windowY, x + windowWidth, windowY + windowHeight);
+        windowGradient.addColorStop(0, 'rgba(135, 206, 235, 0.3)');
+        windowGradient.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
+        ctx.fillStyle = windowGradient;
+        ctx.fillRect(x + 5, windowY + 5, windowWidth - 10, windowHeight - 10);
+    }
+}
+
+// Draw desks and workstations
+function drawDesks(ctx, width, height) {
+    const deskCount = 4;
+    const deskWidth = width * 0.12;
+    const deskHeight = height * 0.08;
+    const deskY = height * 0.7;
+    
+    for (let i = 0; i < deskCount; i++) {
+        const x = width * 0.3 + i * (deskWidth + 30);
+        
+        // Desk surface
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(x, deskY, deskWidth, deskHeight);
+        
+        // Desk legs
+        ctx.fillStyle = '#654321';
+        ctx.fillRect(x + 5, deskY + deskHeight, 8, height * 0.15);
+        ctx.fillRect(x + deskWidth - 13, deskY + deskHeight, 8, height * 0.15);
+        
+        // Computer/laptop on desk
+        if (i % 2 === 0) {
+            ctx.fillStyle = '#2c3e50';
+            ctx.fillRect(x + deskWidth * 0.2, deskY - 15, deskWidth * 0.6, 12);
+        }
+        
+        // Chair
+        ctx.fillStyle = '#34495e';
+        ctx.beginPath();
+        ctx.arc(x + deskWidth / 2, deskY + deskHeight + 40, 20, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Draw plants and decorative elements
+function drawPlants(ctx, width, height) {
+    // Floor plants
+    const plantPositions = [
+        { x: width * 0.1, y: height * 0.8 },
+        { x: width * 0.85, y: height * 0.75 }
+    ];
+    
+    plantPositions.forEach(pos => {
+        // Pot
+        ctx.fillStyle = '#8b4513';
+        ctx.fillRect(pos.x, pos.y, 30, 40);
+        
+        // Plant leaves
+        ctx.fillStyle = '#228b22';
+        for (let i = 0; i < 5; i++) {
+            const leafX = pos.x + 15 + Math.cos(i * Math.PI / 2.5) * 20;
+            const leafY = pos.y - 10 + Math.sin(i * Math.PI / 2.5) * 15;
+            ctx.beginPath();
+            ctx.ellipse(leafX, leafY, 8, 15, i * Math.PI / 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+    });
+}
+
+// Draw geometric pattern overlay
+function drawGeometricPattern(ctx, width, height) {
+    ctx.globalAlpha = 0.05;
+    ctx.strokeStyle = '#3498db';
+    ctx.lineWidth = 2;
+    
+    // Draw subtle grid pattern
+    const gridSize = 50;
+    for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+    }
+    
+    for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+    }
+    
+    ctx.globalAlpha = 1;
 }
 
 // Create placeholder image
