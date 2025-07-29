@@ -231,8 +231,8 @@ function initPortfolioImages() {
         }
     });
 
-    if (aboutImage && placeholderImages['about-image.jpg']) {
-        aboutImage.src = placeholderImages['about-image.jpg'];
+    if (aboutImage) {
+        aboutImage.src = 'images/about-image.jpg';
     }
 
     // Add lazy loading effect
