@@ -148,7 +148,11 @@ body {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(52, 152, 219, 0.4)), url('images/office-team.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -156,7 +160,6 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
-    background-attachment: fixed;
 }
 
 .hero::before {
