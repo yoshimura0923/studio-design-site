@@ -160,6 +160,7 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
 }
 
 .hero::before {
@@ -293,6 +294,8 @@ section h2 {
 /* About Section */
 .about {
     background-color: var(--bg-light);
+    margin-top: -20vh;
+    padding-top: calc(5rem + 20vh);
 }
 
 .about-grid {
@@ -550,8 +553,17 @@ section h2 {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    
     .hero-content {
         text-align: center;
+    }
+    
+    .about {
+        margin-top: -10vh;
+        padding-top: calc(3rem + 10vh);
     }
     
     .hamburger {
