@@ -155,8 +155,9 @@ body {
     background-attachment: fixed;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    padding-left: 5%;
+    text-align: left;
     color: white;
     position: relative;
     overflow: hidden;
@@ -178,6 +179,7 @@ body {
     z-index: 1;
     max-width: 800px;
     padding: 0 2rem;
+    text-align: left;
 }
 
 .hero-content h2 {
@@ -185,12 +187,63 @@ body {
     margin-bottom: 1rem;
     font-weight: 700;
     line-height: 1.2;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    animation: slideInFromLeft 1.2s ease-out;
+}
+
+.hero-content h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s ease-in-out 0.5s;
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
 }
 
 .hero-content p {
     font-size: clamp(1rem, 2vw, 1.5rem);
     margin-bottom: 2rem;
     opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.9;
+    }
 }
 
 .cta-button {
@@ -205,6 +258,7 @@ body {
     transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out 0.6s both;
 }
 
 .cta-button:hover {
@@ -486,6 +540,16 @@ section h2 {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        justify-content: center;
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
     .hamburger {
         display: flex;
     }
